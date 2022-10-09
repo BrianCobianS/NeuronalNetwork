@@ -336,7 +336,7 @@ end
 corrientes_history(1).historial=estructura_corrientes;
 %%%%INICIO DEL IMPULSO%%%%%
 repit=1;
-barrido=2;
+barrido=1;
 while repit<=caracter_programa.barridos
     estructura_corrientesev=corrientes_history(repit).historial;
 for i=1:cant_neuro
