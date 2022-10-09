@@ -2,27 +2,30 @@ clear all
 clc
 close all
 %%neuronas
-cant_neuro=input('¿cuantas neuronas quieres asignar?\n');
-cant_entradas=input('¿cuantos inputs tendrá cada neurona?\n');
-cant_salidas=input('cuantos outputs tendrá cada neurona?\n');
+cant_neuro=input('¿Cuantas neuronas quieres asignar?\n');
+while(cant_neuro < 10)
+    msgbox("Error, el minimos de neuronas para asignar son 10");
+    cant_neuro=input('¿Cuantas neuronas quieres asignar?\n');
+end 
+cant_entradas=input('¿Cuántos inputs tendrá cada neurona?\n');
+cant_salidas=input('¿Cuántos outputs tendrá cada neurona?\n');
 entradas=sprintf('inputs(%i)',cant_entradas);
 salidas=sprintf('salidas(%i)',cant_salidas);
 logicsal=cant_salidas*cant_neuro;
 logicin=cant_entradas*cant_neuro;
 while(logicin<logicsal)
-    msgbox("error, no hay suficiente espacio para enlaces, permita más entradas:")
-    cant_entradas=input('¿cuantos inputs tendrá cada neurona?\n');
+    msgbox("Error, no hay suficiente espacio para enlaces, permita más entradas:")
+    cant_entradas=input('¿Cuántos inputs tendrá cada neurona?\n');
     logicin=cant_entradas*cant_neuro;
-
 end
 vect_papel=zeros(1,cant_neuro);
-cant_inhibit=input('¿cuantas neuronas serán inhibidoras?\n');
-cant_excit=input('¿cuantas neuronas serán excitadoras?\n');
+cant_inhibit=input('¿Cuantas neuronas serán inhibidoras?\n');
+cant_excit=input('¿Cuantas neuronas serán excitadoras?\n');
 if (cant_inhibit+cant_excit)~=cant_neuro
     while (cant_inhibit+cant_excit)~=cant_neuro
         msgbox("Error, la cantidad de neuronas no coincide con tu cantidad de inhibidoras y excitadoras");        
-        cant_inhibit=input('¿cuantas neuronas serán inhibidoras?\n');
-        cant_excit=input('¿cuantas neuronas serán excitadoras?\n');
+        cant_inhibit=input('¿Cuantas neuronas serán inhibidoras?\n');
+        cant_excit=input('¿Cuantas neuronas serán excitadoras?\n');
     end
 end
 vect_cell_excitadoras=zeros(1,cant_excit);
@@ -198,14 +201,14 @@ grid off
 
  pause(1)
  clc
- cant_tipos=input('cuantos tipos de neuronas quieres utilizar?\n');
+ cant_tipos=input('¿Cuántos tipos de neuronas quieres utilizar?\n');
  vect_tiempos=zeros(1,cant_tipos);
  orden=strings(1,cant_tipos);
  load('option_types.mat')
  i=1;
  while(i<=cant_tipos)
      clc
-      fprintf('los tipos de neurona son las siguientes\n')
+      fprintf('Los tipos de neurona son las siguientes:\n')
      for a=1:18
  fprintf('%i) %s  ',a,optiontype(a).nombres)
  if mod(a,3)==0
@@ -255,7 +258,7 @@ grid off
             end
     end
 if i>cant_tipos
-    fprintf("estos sin los tipo que has elegido")
+    fprintf("estos son los tipo que has elegido")
     disp(orden)
 end
 input("presione enter para continuar")
@@ -264,8 +267,8 @@ input("presione enter para continuar")
 
 clc
 
-fprintf("tienes %i tipos de neuronas y %i cantidad de nueronas\n",cant_tipos,cant_neuro)
-fprintf("cuantas quieres para cada tipo:\n")
+fprintf("tienes %i tipos de neuronas y %i cantidad de neuronas\n",cant_tipos,cant_neuro)
+fprintf("¿Cuantas quieres para cada tipo:\n")
 correcto=0;
 ordentipos=zeros(1,cant_tipos);
 vectorsuma=zeros(1,cant_tipos);
@@ -279,7 +282,7 @@ while correcto==0
         correcto=1;
     else
         correcto=0;
-        msgbox("error,cantidad de neuronas no coincide");
+        msgbox("Error,cantidad de neuronas no coincide");
     end
     
 end
@@ -308,12 +311,12 @@ for i=1:length(double(orden))
     temp(i)=optiontype(double(orden(i))).t_ms;
 end
 caracter_programa.NeuronaTiempoMax=max(temp);
-caracter_programa.tiempototal=input('cuánto tiempo quieres correr la simulación (en segundos)?:\n');
-caracter_programa.barridos=input('cuántos barridos te gustaría observar:\n');
+caracter_programa.tiempototal=input('¿Cuánto tiempo quieres correr la simulación (en segundos)?:\n');
+caracter_programa.barridos=input('¿Cuántos barridos te gustaría observar:\n');
 caracter_programa.batchestime=(caracter_programa.tiempototal/caracter_programa.barridos);
 clc
 fprintf("tienes %i opciones para iniciar un impulso excitador\n",pos_vect);
-caracter_programa.impinicialcant=input('cuántos impulsos quieres iniciar?\n');
+caracter_programa.impinicialcant=input('¿Cuántos impulsos quieres iniciar?\n');
 caracter_programa.aleator_selec=input(['deseas seleccionar donde van a iniciar o que sea aleatorio?\n' ...
     '1.aleatorio\n2.seleccionar\n']);
 caracter_programa.veciniciar=randsample(vect_cell_excitadoras,caracter_programa.impinicialcant);
@@ -325,7 +328,7 @@ tiempobarr_ms=caracter_programa.NeuronaTiempoMax;
 fprintf("el impulso iniciaría en las siguientes neuronas:\n");
 disp(caracter_programa.veciniciar)
 input('presione enter para continuar:\n')
-pote_impin=.01*input('a que porcentaje de intensidad de gustaría que fuera el primer pulso de 0%-100%?\n');
+pote_impin=.01*input('¿A que porcentaje de intensidad de gustaría que fuera el primer pulso de 0%-100%?\n');
 
 for i=1:length(vect_ini)
     estructura_corrientes(vect_ini(i)).vect_salidas=optiontype(estructura(vect_ini(i)).tipo).Imax*pote_impin*estructura(vect_ini(i)).modo;
