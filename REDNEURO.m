@@ -298,11 +298,16 @@ end
 
 ordenasignacion=randsample(ordentype,cant_neuro);
 for i=1:cant_neuro
+    
 estructura(i).tipo=ordenasignacion(i);
 estructura(i).tiponombre=optiontype(ordenasignacion(i)).nombres;
 estructura(i).tiempo_trabajo=optiontype(estructura(i).tipo).t_ms;
 end
 load('reporte_caracter.mat')
+for i=1:length(double(orden))
+    temp(i)=optiontype(double(orden(i))).t_ms;
+end
+caracter_programa.NeuronaTiempoMax=max(temp);
 caracter_programa.tiempototal=input('cuánto tiempo quieres correr la simulación (en segundos)?:\n');
 caracter_programa.barridos=input('cuántos barridos te gustaría observar:\n');
 caracter_programa.batchestime=(caracter_programa.tiempototal/caracter_programa.barridos);
@@ -315,7 +320,7 @@ caracter_programa.veciniciar=randsample(vect_cell_excitadoras,caracter_programa.
 caracter_programa.estructura=estructura;
 vect_ini=caracter_programa.veciniciar;
 estructura_corrientes=struct_current(estructura,cant_neuro);
-tiempobarr_ms=200;
+tiempobarr_ms=caracter_programa.NeuronaTiempoMax;
 
 fprintf("el impulso iniciaría en las siguientes neuronas:\n");
 disp(caracter_programa.veciniciar)
