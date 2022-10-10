@@ -9,12 +9,12 @@ for i=2:cant_barridos
     scatter(picos,vector_y,'.')
     ylim([0 cant_neuro+1])
     xlim([0 corrientes_history(end).historial(end).tiempos(end)])
-    yticks([ticks_y])
+    yticks(ticks_y)
     ylabel("Neurona")
     xlabel("Tiempo (ms)")
     hold on
     end
-    pause(1)
+    pause(0.5)
 end
 
 
