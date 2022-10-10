@@ -347,7 +347,7 @@ for i=1:cant_neuro
    estructura_corrientes(i).tiempos=tiempos;
    estructura_corrientes(i).cantpicos=cant_picos;
    estructura_corrientes(i).local_picos=local;
-   estructura_corrientes(i).voltaje=optiontype(i).Voltaje;
+   estructura_corrientes(i).voltaje=double(optiontype(estructura(i).tipo).Voltaje);
 end
 barrido=barrido+1;
 corrientes_history(repit+1).historial=estructura_corrientes;
