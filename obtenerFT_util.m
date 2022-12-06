@@ -12,6 +12,7 @@ vector_amp_util=vector_amp(1:corte);
 vector_freq_util=vector_freq(1:corte);
 
 eje_freq=vector_freq_util(1):1/(length(vector_freq_util)*2):vector_freq_util(end);
+
 eje_amp=interp1(vector_freq_util,vector_amp_util,eje_freq);
 
 
@@ -22,8 +23,8 @@ for i=1:length(eje_freq)
     end
 end
 
-eje_freq=eje_freq(i:end);
-eje_amp=eje_amp(i:end);
+eje_freq=eje_freq(corte:end);
+eje_amp=eje_amp(corte:end);
 eje_freq(1)=0;
 eje_amp(1)=0;
 
@@ -31,10 +32,10 @@ eje_amp=eje_amp./max(max(eje_amp));
 amp_fun=eje_amp>.3;
 amp_fun=amp_fun.*eje_amp;
 [picos,freq_picos]=findpeaks(amp_fun,eje_freq,'MinPeakHeight',.3);
-s=3;
 
 amp_fun=[0,amp_fun];
 eje_freq = [0,eje_freq];
+
 
 for i=1:length(picos)
     for j=1:length(amp_fun)
@@ -80,8 +81,8 @@ freq_picos_f = freq_picos_f(2:end);
 %% Limites de confianza
 varianza_amp = var(picos_f);
 media_muestreal = mean(picos_f);
-ext_inf = (-1.96*varianza_amp)+media_muestreal;
-ext_sup = (1.96*varianza_amp)+media_muestreal;
+ext_inf = (-1.96*varianza_amp/(sqrt(length(picos_f))))+media_muestreal;
+ext_sup = (1.96*varianza_amp/(sqrt(length(picos_f))))+media_muestreal;
 for i=1:length(picos_f)
     if ext_inf < picos_f(i) && picos_f(i) < ext_sup
         picos_f(i) = picos_f(i);

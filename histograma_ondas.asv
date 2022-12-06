@@ -121,8 +121,7 @@ resultante_mag=0;
 
                     if proporcion(i).coseno_a>0||proporcion(i).seno_a>0
                     sumatoria_ang_X=proporcion(i).coseno_a+sumatoria_ang_X;
-                    sumatoria_ang_Y=proporcion(i).seno_a+sumatoria_ang_Y;
-                    amplitud=proporcion(i).magnitud;
+                    sumatoria_ang_Y=sind(eje_angular)+sumatoria_ang_Y;
                     resultante_mag=amplitud+resultante_mag; 
                     cont=cont+1;
                     end
@@ -130,7 +129,9 @@ resultante_mag=0;
                 X_ang_res=sumatoria_ang_X/cont;
                 Y_ang_res=sumatoria_ang_Y/cont;
                 resultante_magnitud=resultante_mag/cont;
-
+                angulo_fin=sqrt(X_ang_res^2+Y_ang_res^2);
+                cosenoalpha_rs=X_ang_res/angulo_fin;
+                senoalpha_rs=Y_ang_res/angulo_fin;
      sum_mag=0;
      
 for i=1:4
@@ -151,12 +152,12 @@ proporcion(5).nombre="resultante";
 text_prop_dom=strcat("el rango con más magnitud es: ",tit_dominante(dominio));
 proporcion(5).rangos=text_prop_dom;
 proporcion(5).magnitud=resultante_magnitud;
-proporcion(5).coseno_a=X_ang_res;
-proporcion(5).seno_a=Y_ang_res;
-proporcion(5).coseno_fi=X_ang_res*resultante_magnitud;
-proporcion(5).seno_fi=Y_ang_res*resultante_magnitud;
-
-proporcion(5).vect_angul=acosd(X_ang_res);
+proporcion(5).coseno_a=cosenoalpha_rs;
+proporcion(5).seno_a=senoalpha_rs;
+proporcion(5).coseno_fi=cosenoalpha_rs*resultante_magnitud;
+proporcion(5).seno_fi=senoalpha_rs*resultante_magnitud;
+angulito=acosd(cosenoalpha_rs);
+proporcion(5).vect_angul=vector_freq_mag(dominio);
 r=sqrt(proporcion(5).coseno_fi^2 + proporcion(5).seno_fi^2); 
 
 for i=1:4

@@ -593,7 +593,7 @@ end
 [s_org,fspec_org,tspect_org,fs] = get_spect(vectorfinal,caracter_programa.tiempototal);
 %[abs_amp,nuevo_t,ultima_fre,adj_amp]=funcional_1(vectorfinal,caracter_programa.tiempototal,fs);
 [fun_amp,fun_t]=funcional_2(vectorfinal,caracter_programa.tiempototal,fs);
-[vector_amp,vector_freq]=obtenerFT(fun_amp,fs,fun_t(end));
+[vector_amp,vector_freq]=obtenerFT_simul(fun_amp,fs,fun_t(end));
 % [vector_amp_util,vector_freq_util,picos,freq_picos,amp_util]=obtenerFT_util(vector_amp,vector_freq);
 % [vector_amp_util,vector_freq_util,picos,freq_picos,amp_util,picos_f,freq_picos_f]=obtenerFT_util(vector_amp,vector_freq);
 [picos,freq_picos,amp_util,picos_f,freq_picos_f]=obtenerFT_util(vector_amp,vector_freq);
