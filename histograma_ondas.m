@@ -12,7 +12,7 @@ for i=1:4
         end
     end
 end
-
+freq_picos=freq_picos(1:length(picos_eeg));
 delta = picos_eeg(freq_picos>0.5 & freq_picos<=3);
 theta = picos_eeg(freq_picos>3 & freq_picos<=7);
 alpha = picos_eeg(freq_picos>7 & freq_picos<=13);
@@ -141,10 +141,12 @@ for i=1:4
     
    r=[0,magni];
    rang_freq_ang=[0,vector_freq_mag(i)];
-   polarpattern(rang_freq_ang,r,'-*','MagnitudeTick',[0.2,0.4,0.6,0.8,1],'MagnitudeLim',[0 1])
+   polarpattern(rang_freq_ang,r,'-','MagnitudeTick',[0.2,0.4,0.6,0.8,1],'MagnitudeLim',[0 1])
    hold on
    sum_mag=proporcion(i).magnitud+sum_mag;
 end
+eje_angular=eje_angular(1:length(picos_eeg));
+polarpattern(eje_angular,picos_eeg,'-b')
 
 tit_dominante=["delta", "theta", "alfa", "beta"];
 proporcion(5).nombre="resultante";
@@ -186,4 +188,9 @@ if isempty(proporcion(4).vector_amp) == not(1)
     end
     listo=1;
 end
-
+   magni=proporcion(5).magnitud;
+   r=[0,magni];
+   rang_freq_ang=[0,proporcion(5).vect_angul];
+   polarpattern(rang_freq_ang,r,'-k','MagnitudeTick',[0.2,0.4,0.6,0.8,1],'MagnitudeLim',[0 1])
+   legend(upper('delta'),upper('theta'),upper('alfa'),upper('beta'),upper('general'),upper('resultante'))
+   r=magni;

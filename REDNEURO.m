@@ -627,7 +627,7 @@ rayleigh(r,n,proporcion);
 
 load('rango_ondas.mat')
 % [proporcion,r,n]=histograma_ondas(freq_picos,picos,eje_angular,rango_ondas);
-[proporcion_eeg,r_eeg,n_eeg]=histograma_ondas(freq_picos_eeg,picos_eeg,eje_angular_eeg,rango_ondas);
+[proporcion_eeg,r_eeg,n_eeg]=histograma_ondas(freq_picos_f_eeg,picos_f_eeg,eje_angular_eeg,rango_ondas);
 dispersion_eeg=dispersion_angular(r_eeg);
 rayleigh(r_eeg,n_eeg,proporcion_eeg);
 
